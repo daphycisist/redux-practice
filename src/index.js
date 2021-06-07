@@ -1,16 +1,7 @@
-const { compose, pipe } = require("lodash/fp");
-// import { compose, pipe } from "lodash/fp";
+import { bugAdded, bugResolved } from "./actions";
+import store from "./store";
 
-const input = "   Javascript   ";
+store.dispatch(bugAdded("Bug1"));
+store.dispatch(bugResolved(1));
 
-const trim = (str) => str.trim();
-
-const toLowerCase = (str) => str.toLowerCase();
-
-const wrap = (type) => (str) => `<${type}>${str}</${type}>`;
-
-const transform = pipe(trim, toLowerCase, wrap("div"));
-
-const result = transform(input);
-
-console.log(result);
+console.log(store.getState());
